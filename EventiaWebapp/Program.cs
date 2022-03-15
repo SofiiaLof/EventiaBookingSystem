@@ -6,6 +6,7 @@ builder.Services.AddRazorPages();
 var app = builder.Build();
 
 app.UseRouting();
+
 app.MapControllerRoute(name: "default", pattern: "{controller=event}/{action=index}");
 
 app.Run();

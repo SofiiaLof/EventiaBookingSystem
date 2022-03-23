@@ -1,0 +1,16 @@
+﻿@model EventiaWebapp.Models.Event
+
+
+<div class="card" style="width: 18rem;">
+    
+    <div class="card-body">
+        <h5 class="card-title">@Model.Title</h5>
+        <p class="card-text">@Model.Description</p>
+        <p>@Model.Place</p>
+        <p>@Model.Adress</p>
+        <p>@Model.Organizer</p>
+        <p>@Model.Date</p>
+        <p>@Model.Spots_available</p>
+        <a  class="btn btn-primary" asp-controller="Event" asp-action="Confirmation" asp-route-id="@Model.Id">Join event</a>
+    </div>
+</div>

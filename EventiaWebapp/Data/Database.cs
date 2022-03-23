@@ -40,11 +40,8 @@ namespace EventiaWebapp.Data
 
             var attendee = new List<Attendee>
             {
-                new() {Name ="Sara Larsson", Email="saralars@gmail.com", Phone_number = "0723856745", Events = new List<Event>{events[0],events[1], events[2]}},
-                new() {Name ="Olof Svensson", Email="olofsven@gmail.com", Phone_number = "0723856745", Events = new List<Event>{events[0]}},
-                new() {Name ="Wilma Oskarsson", Email="wilmaosk@gmail.com", Phone_number = "0723856745", Events = new List<Event>{events[0]}},
-                new() {Name ="Johan Johansson", Email="johanjohan@gmail.com", Phone_number = "0723856745", Events = new List<Event>{events[0]}},
-                new() {Name ="Irma Ingvarsson", Email="irmaingvarsson@gmail.com", Phone_number = "0723856745", Events = new List<Event>{events[0]}},
+                new() {Name ="Sara Larsson", Email="saralars@gmail.com", Phone_number = "0723856745"},
+               
             };
 
             await _ctx.AddRangeAsync(attendee);

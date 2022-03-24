@@ -1,6 +1,7 @@
 ﻿using EventiaWebapp.Data;
 using EventiaWebapp.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
 
 namespace EventiaWebapp.Services
 {
@@ -24,7 +25,8 @@ namespace EventiaWebapp.Services
 
         public async Task<Event> GetEventItemById(int id)
         {
-            var query = _ctx.Events.Where(e => e.Id == id);
+            var query = _ctx.Events.Where(e => e.Id == id)
+                .Include(o=>o.Organizer);
             var eventItem = await query.FirstOrDefaultAsync();
 
             return eventItem;
@@ -36,7 +38,8 @@ namespace EventiaWebapp.Services
             var queryAttendee = _ctx.Attendes.Where(a => a.Id == attendee.Id).Include(e=>e.Events);
             var attendeeFound = await queryAttendee.FirstOrDefaultAsync();
 
-            var queryEvent = _ctx.Events.Where(e => e.Id == eventId);
+            var queryEvent = _ctx.Events.Where(e => e.Id == eventId)
+                .Include(o=>o.Organizer);
             var eventFound = await queryEvent.FirstOrDefaultAsync();
 
             attendeeFound.Events.Add(eventFound);
@@ -57,9 +60,11 @@ namespace EventiaWebapp.Services
 
         public async Task<List<Event>> GetAttendeeEventList(Attendee attendee)
         {
-            var queryAttendee = _ctx.Attendes.Where(a => a.Id == attendee.Id).Include(e => e.Events);
+            var queryAttendee = _ctx.Attendes.Where(a => a.Id == attendee.Id)
+                .Include(e => e.Events);
+                
             var attendeeFound = await queryAttendee.FirstOrDefaultAsync();
-            var eventList =  attendeeFound.Events.ToList();
+            var eventList = attendeeFound.Events.ToList();
 
             return eventList;
         }

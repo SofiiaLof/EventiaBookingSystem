@@ -11,6 +11,6 @@ namespace EventiaWebapp.Models
         public string Email { get; set; }
         public string Phone_number { get; set; }
 
-        public ICollection<Event> Events { get; set; }
+        public IList<Event> Events { get; set; }
     }
 }

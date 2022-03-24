@@ -9,8 +9,9 @@
     flex: 1;
 }
 
-footer {
+.main-footer {
     height: 100px;
+    background-color: #EFD9D1;
 }
 
 .accordion-button:not(.collapsed) {
@@ -18,5 +19,19 @@ footer {
      box-shadow: none;
  }
 
+.header-main {
+    background-color: #EFD9D1;
+}
 
-  
+.navbar-brand {
+    font-family: 'Libre Barcode 39 Text';
+    font-size: 3rem;
+}
+.nav-item {
+    font-weight: bold;
+    color: #1B1A17;
+}
+body {
+    font-family: 'Montserrat';
+    
+}

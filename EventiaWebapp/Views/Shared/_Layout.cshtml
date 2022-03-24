@@ -6,11 +6,12 @@
     <title>@ViewData["Title"] - Eventia</title>
     <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="~/css/main-style.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Barcode+39+Text&family=Montserrat:wght@300&display=swap" rel="stylesheet">
   
 </head>
 <body class="content">
-<header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+<header class="header-main">
+    <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Eventia</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,7 +41,7 @@
     <main role="main" class="main-content container pt-4">
         @RenderBody()
     </main>
-<footer class="bg-light">
+<footer class="main-footer">
     <div class="container">
         &copy; 2022 Eventia  - <a asp-controller="" asp-action=""></a>
     </div>
@@ -48,4 +49,3 @@
 <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-

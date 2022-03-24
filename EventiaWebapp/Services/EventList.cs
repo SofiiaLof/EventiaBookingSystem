@@ -54,5 +54,14 @@ namespace EventiaWebapp.Services
 
             return query;
         }
+
+        public async Task<List<Event>> GetAttendeeEventList(Attendee attendee)
+        {
+            var queryAttendee = _ctx.Attendes.Where(a => a.Id == attendee.Id).Include(e => e.Events);
+            var attendeeFound = await queryAttendee.FirstOrDefaultAsync();
+            var eventList =  attendeeFound.Events.ToList();
+
+            return eventList;
+        }
     }
 }

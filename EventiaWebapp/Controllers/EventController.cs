@@ -19,9 +19,12 @@ namespace EventiaWebapp.Controllers
         {
             return View();
         }
-        public IActionResult MyEvents()
+        public async Task<IActionResult> MyEvents(int id)
         {
-            return View();
+            var attendee = await _eventList.FindAttendee(1);
+            var attendeeEventList = await _eventList.GetAttendeeEventList(attendee);
+
+            return View(attendeeEventList);
         }
 
       

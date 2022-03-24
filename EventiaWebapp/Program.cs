@@ -14,7 +14,9 @@ builder.Services.AddDbContext<EventiaDbContext>(options =>
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
+
 var app = builder.Build();
+app.UseStaticFiles();
 
 using (var scope = app.Services.CreateScope())
 {
@@ -30,9 +32,8 @@ using (var scope = app.Services.CreateScope())
     
 }
 
-
-
 app.UseRouting();
+
 
 app.MapControllerRoute(name: "default", pattern: "{controller=event}/{action=index}");
 

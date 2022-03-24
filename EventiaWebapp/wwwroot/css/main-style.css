@@ -1,0 +1,22 @@
+﻿
+.content {
+     display: flex;
+     min-height: 100vh;
+     flex-direction: column;
+ }
+
+.main-content {
+    flex: 1;
+}
+
+footer {
+    height: 100px;
+}
+
+.accordion-button:not(.collapsed) {
+     background-color: white;
+     box-shadow: none;
+ }
+
+
+  

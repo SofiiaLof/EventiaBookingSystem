@@ -27,18 +27,20 @@ namespace EventiaWebapp.Controllers
       
         public async Task<IActionResult> JoinEvent(int id)
         {
-            var eventItem = await _eventList.GetEventItemById(id);
 
-            return View(eventItem);
+            if (HttpContext.Request.Method == "POST")
+            {
+                var attendee = await _eventList.FindAttendee(1);
+                var joinedEvent = await _eventList.JoinedEvent(attendee, id);
+
+                return View("JoinEvent", joinedEvent);
+              
+            }
+            var eventItem = await _eventList.GetEventItemById(id);
+            return View("JoinEvent", eventItem);
+
         }
 
         
-        public async Task<IActionResult> Confirmation(int id)
-        {
-            var attendee = await _eventList.FindAttendee(1);
-            var joinedEvent = await _eventList.JoinedEvent(attendee, id);
-
-            return View(joinedEvent);
-        }
     }
 }

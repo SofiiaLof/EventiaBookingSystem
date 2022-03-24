@@ -42,7 +42,7 @@ namespace EventiaWebapp.Services
             attendeeFound.Events.Add(eventFound);
       
 
-          _ctx.Update(attendee);
+          _ctx.Update(attendeeFound);
           await  _ctx.SaveChangesAsync();
 
             return  eventFound;

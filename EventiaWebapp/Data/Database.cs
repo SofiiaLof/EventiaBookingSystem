@@ -51,7 +51,11 @@ namespace EventiaWebapp.Data
 
         public async Task CreateAndSeed()
         {
-
+            bool ifNotExist = await _ctx.Database.EnsureCreatedAsync();
+            if (ifNotExist)
+            {
+                await Seed();
+            }
         }
     }
 }

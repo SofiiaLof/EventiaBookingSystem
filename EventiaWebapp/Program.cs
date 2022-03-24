@@ -16,20 +16,15 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 
 var app = builder.Build();
-app.UseStaticFiles();
+
 
 using (var scope = app.Services.CreateScope())
 {
-    var services = scope.ServiceProvider;
-
-    var context = services.GetRequiredService<EventiaDbContext>();
-    context.Database.EnsureDeleted();
-    context.Database.EnsureCreated();
-
+    
     var database = scope.ServiceProvider
         .GetRequiredService<Database>();
-    await database.Seed();
-    
+    await database.CreateAndSeed();
+
 }
 
 app.UseRouting();

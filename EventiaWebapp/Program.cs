@@ -17,9 +17,10 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 var app = builder.Build();
 
+app.UseStaticFiles();
 
 using (var scope = app.Services.CreateScope())
-{
+{   
     
     var database = scope.ServiceProvider
         .GetRequiredService<Database>();

@@ -17,7 +17,7 @@ namespace EventiaWebapp.Services
 
         public async Task <List<Event>> GetEventList()
         {
-            var query = _ctx.Events;
+            var query = _ctx.Events.Include(o=>o.Organizer);
             var eventsList = await query.ToListAsync();
 
             return eventsList;
@@ -64,9 +64,13 @@ namespace EventiaWebapp.Services
                 .Include(e => e.Events);
                 
             var attendeeFound = await queryAttendee.FirstOrDefaultAsync();
-            var eventList = attendeeFound.Events.ToList();
+
+            var queryEventList = _ctx.Events.Where(a => a.Attendees.Contains(attendeeFound)).Include(o => o.Organizer);
+            var eventList = await queryEventList.ToListAsync();
 
             return eventList;
+
+
         }
     }
 }

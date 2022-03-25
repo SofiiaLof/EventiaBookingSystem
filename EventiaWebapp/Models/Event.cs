@@ -13,6 +13,7 @@ namespace EventiaWebapp.Models
         public string Place { get; set; }
 
         public string Adress { get; set; }
+
         public DateTime Date { get; set; }
         public int Spots_available { get; set; }
 

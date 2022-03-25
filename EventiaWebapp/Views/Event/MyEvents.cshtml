@@ -1,7 +1,7 @@
 ﻿@using EventiaWebapp.Models
 @model IList<Event>
 
-    
+<h2>Your events</h2>
 <table class="table">
 <thead>
 <tr>
@@ -18,7 +18,7 @@
 
         <tr>
             <td>@eventItem.Title</td>
-            <td>@eventItem.Date</td>
+            <td>@eventItem.Date.ToString("MM/dd/yyyy")</td>
             <td>@eventItem.Place</td>
             <td>@eventItem.Organizer.Name</td>
         </tr>

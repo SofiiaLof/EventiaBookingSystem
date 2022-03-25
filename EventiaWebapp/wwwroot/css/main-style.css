@@ -35,3 +35,18 @@ body {
     font-family: 'Montserrat';
     
 }
+
+.card, .accordion {
+    border-radius: 1rem;
+    box-shadow: 0 0 8px 0 rgb(0 0 0 / 8%), 0 0 15px 0 rgb(0 0 0 / 2%);
+}
+
+.card-title {
+    font-weight: bold;
+}
+
+.confirmation-info {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+              }

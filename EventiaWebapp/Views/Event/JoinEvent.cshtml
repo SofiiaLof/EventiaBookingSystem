@@ -2,20 +2,20 @@
 
 @if (Context.Request.Method == "GET")
 {
-    <div class="card" style="width: 18rem;">
+    <div class="card">
     
         <div class="card-body">
             <h5 class="card-title">@Model.Title</h5>
-            <p class="card-text">@Model.Description</p>
-            <p>@Model.Place</p>
-            <p>@Model.Adress</p>
-            <p>@Model.Organizer</p>
-            <p>@Model.Date</p>
-            <p>@Model.Spots_available</p>
+            <p class="card-text">Description: @Model.Description</p>
+            <p>Place: @Model.Place</p>
+            <p>Adress: @Model.Adress</p>
+            <p>Organizer: @Model.Organizer.Name</p>
+            <p>Date: @Model.Date.ToString("MM/dd/yyyy")</p>
+            <p>Spots avaliable: @Model.Spots_available</p>
             
             <form method="post">
               
-                <input type="submit" class="btn btn-primary" asp-controller="Event" asp-action="JoinEvent" asp-route-id="@Model.Id" value="Join event">
+                <input type="submit" class="btn btn-success" asp-controller="Event" asp-action="JoinEvent" asp-route-id="@Model.Id" value="Join event">
             </form>
           
         </div>
@@ -25,28 +25,31 @@
 @if (Context.Request.Method == "POST")
 {
     
-    <div class="card" style="width: 18rem;">
+    <div class="card">
     
         <div class="card-body">
             <h5 class="card-title">@Model.Title</h5>
-            <p class="card-text">@Model.Description</p>
-            <p>@Model.Place</p>
-            <p>@Model.Adress</p>
-            <p>@Model.Organizer</p>
-            <p>@Model.Date</p>
-            <p>@Model.Spots_available</p>
+            <p class="card-text">Description: @Model.Description</p>
+            <p>Place: @Model.Place</p>
+            <p>Adress: @Model.Adress</p>
+            <p>Organizer: @Model.Organizer.Name</p>
+            <p>Date: @Model.Date.ToString("MM/dd/yyyy")</p>
+            <p>Spots avaliable: @Model.Spots_available</p>
             
             <form method="post">
-                <input type="submit" class="btn btn-primary" asp-controller="Event" asp-action="JoinEvent" asp-route-id="@Model.Id" value="Join event">
+                <input type="submit" class="btn btn-success" asp-controller="Event" asp-action="JoinEvent" asp-route-id="@Model.Id" value="Join event">
             </form>
           
         </div>
     </div>
-    <h2>Successfyly joined @Model.Title. See you there </h2>
-    <div>
-        <a type="submit" class="btn btn-primary" asp-controller="Event" asp-action="Events">View more events</a>    
-        <a type="submit" class="btn btn-primary" asp-controller="Event" asp-action="MyEvents">View your events</a> 
+    <div class="confirmation-info pt-5">
+        <h2>Successfyly joined @Model.Title event. See you there! </h2>
+        <div>
+            <a type="submit" class="btn btn-info" asp-controller="Event" asp-action="Events">View more events</a>    
+            <a type="submit" class="btn btn-info" asp-controller="Event" asp-action="MyEvents">View your events</a> 
+        </div>
+
     </div>
-         
+   
 }
  

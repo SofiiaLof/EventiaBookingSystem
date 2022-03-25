@@ -22,10 +22,10 @@
 
                 <div id="item-@item.Id" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        <p>@item.Description</p>
-                        <strong>@item.Organizer</strong>
-                        <strong>@item.Date</strong>
-                        <strong>@item.Place</strong>
+                        <p>Description: @item.Description</p>
+                        <p>Organizer: @item.Organizer.Name</p>
+                        <p>Date: @item.Date.ToString("MM/dd/yyyy")</p>
+                        <p>Place: @item.Place</p>
                     </div>
                 </div>
             </div>

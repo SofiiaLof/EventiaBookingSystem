@@ -21,6 +21,7 @@ namespace EventiaWebapp.Controllers
         }
         public async Task<IActionResult> MyEvents(int id)
         {
+
           var attendee = await _eventList.FindAttendee(1);
           var attendeeEventList = await _eventList.GetAttendeeEventList(attendee);
 

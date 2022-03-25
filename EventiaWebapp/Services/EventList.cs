@@ -60,12 +60,13 @@ namespace EventiaWebapp.Services
 
         public async Task<List<Event>> GetAttendeeEventList(Attendee attendee)
         {
-            var queryAttendee = _ctx.Attendes.Where(a => a.Id == attendee.Id)
-                .Include(e => e.Events);
-                
+            var queryAttendee = _ctx.Attendes.Where(a => a.Id == attendee.Id);
+
             var attendeeFound = await queryAttendee.FirstOrDefaultAsync();
 
-            var queryEventList = _ctx.Events.Where(a => a.Attendees.Contains(attendeeFound)).Include(o => o.Organizer);
+            var queryEventList = _ctx.Events.Where(a => a.Attendees.Contains(attendeeFound))
+                .Include(o => o.Organizer);
+
             var eventList = await queryEventList.ToListAsync();
 
             return eventList;

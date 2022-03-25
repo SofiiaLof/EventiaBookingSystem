@@ -49,4 +49,21 @@ body {
     display: flex;
     flex-direction: column;
     text-align: center;
-              }
+
+}
+
+.card {
+    width: 30rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.card-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 55vh;
+    flex-direction: column;
+}

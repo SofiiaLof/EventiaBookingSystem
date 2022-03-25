@@ -15,47 +15,78 @@ namespace EventiaWebapp.Services
             _ctx = ctx;
         }
 
-        public async Task <List<Event>> GetEventList()
+        public async Task<List<Event>> GetEventList()
         {
-            var query = _ctx.Events.Include(o=>o.Organizer);
-            var eventsList = await query.ToListAsync();
+            var query = _ctx.Events.Include(o => o.Organizer);
 
+            var eventsList = await query.ToListAsync();
+            var exist = eventsList.Any();
+
+            if (!exist)
+            {
+                return null;
+            }
             return eventsList;
+
         }
 
         public async Task<Event> GetEventItemById(int id)
         {
             var query = _ctx.Events.Where(e => e.Id == id)
-                .Include(o=>o.Organizer);
+                .Include(o => o.Organizer);
             var eventItem = await query.FirstOrDefaultAsync();
+
+            var exist = query.Any();
+
+            if (!exist)
+            {
+                return null;
+            }
 
             return eventItem;
 
+
+
         }
-        
+
         public async Task<Event> JoinedEvent(Attendee attendee, int eventId)
         {
-            var queryAttendee = _ctx.Attendes.Where(a => a.Id == attendee.Id).Include(e=>e.Events);
+            var queryAttendee = _ctx.Attendes.Where(a => a.Id == attendee.Id).Include(e => e.Events);
             var attendeeFound = await queryAttendee.FirstOrDefaultAsync();
 
             var queryEvent = _ctx.Events.Where(e => e.Id == eventId)
-                .Include(o=>o.Organizer);
+                .Include(o => o.Organizer);
+
             var eventFound = await queryEvent.FirstOrDefaultAsync();
+            var eventExist = queryEvent.Any();
+            var attendeeExist = queryAttendee.Any();
 
+            if (!eventExist || !attendeeExist)
+            {
+                return null;
+            }
             attendeeFound.Events.Add(eventFound);
-      
 
-          _ctx.Update(attendeeFound);
-          await  _ctx.SaveChangesAsync();
 
-            return  eventFound;
+            _ctx.Update(attendeeFound);
+            await _ctx.SaveChangesAsync();
+
+            return eventFound;
         }
 
         public async Task<Attendee> FindAttendee(int id)
         {
-            var query = await _ctx.Attendes.Where(a => a.Id == id).FirstOrDefaultAsync();
+            var query = _ctx.Attendes.Where(a => a.Id == id);
+            var attendeeFound = await query.FirstOrDefaultAsync();
 
-            return query;
+            var exist = query.Any();
+
+            if (!exist)
+            {
+                return null;
+            }
+
+            return attendeeFound;
         }
 
         public async Task<List<Event>> GetAttendeeEventList(Attendee attendee)
@@ -63,6 +94,13 @@ namespace EventiaWebapp.Services
             var queryAttendee = _ctx.Attendes.Where(a => a.Id == attendee.Id);
 
             var attendeeFound = await queryAttendee.FirstOrDefaultAsync();
+
+            var exist = queryAttendee.Any();
+
+            if (!exist)
+            {
+                return null;
+            }
 
             var queryEventList = _ctx.Events.Where(a => a.Attendees.Contains(attendeeFound))
                 .Include(o => o.Organizer);

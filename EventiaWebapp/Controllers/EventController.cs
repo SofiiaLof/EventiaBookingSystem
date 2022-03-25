@@ -11,24 +11,24 @@ namespace EventiaWebapp.Controllers
         {
             _eventList = eventList;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             return View();
         }
-        public IActionResult Events()
+        public async Task<IActionResult> Events()
         {
             return View();
         }
-        public async Task<IActionResult> MyEvents(int id)
+        public async Task<IActionResult> MyEvents()
         {
 
-          var attendee = await _eventList.FindAttendee(1);
-          var attendeeEventList = await _eventList.GetAttendeeEventList(attendee);
+            var attendee = await _eventList.FindAttendee(1);
+            var attendeeEventList = await _eventList.GetAttendeeEventList(attendee);
 
             return View(attendeeEventList);
         }
 
-      
+
         public async Task<IActionResult> JoinEvent(int id)
         {
 
@@ -38,13 +38,13 @@ namespace EventiaWebapp.Controllers
                 var joinedEvent = await _eventList.JoinedEvent(attendee, id);
 
                 return View("JoinEvent", joinedEvent);
-              
+
             }
             var eventItem = await _eventList.GetEventItemById(id);
             return View("JoinEvent", eventItem);
 
         }
 
-        
+
     }
 }

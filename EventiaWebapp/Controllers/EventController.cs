@@ -22,10 +22,10 @@ namespace EventiaWebapp.Controllers
         public async Task<IActionResult> MyEvents()
         {
 
-            var attendee = await _eventList.FindAttendee(1);
-            var attendeeEventList = await _eventList.GetAttendeeEventList(attendee);
+            //var attendee = await _eventList.FindAttendee(1);
+           // var attendeeEventList = await _eventList.GetAttendeeEventList(attendee);
 
-            return View(attendeeEventList);
+            return View();
         }
 
 
@@ -34,10 +34,10 @@ namespace EventiaWebapp.Controllers
 
             if (HttpContext.Request.Method == "POST")
             {
-                var attendee = await _eventList.FindAttendee(1);
-                var joinedEvent = await _eventList.JoinedEvent(attendee, id);
+                //var attendee = await _eventList.FindAttendee(1);
+               // var joinedEvent = await _eventList.JoinedEvent(attendee, id);
 
-                return View("JoinEvent", joinedEvent);
+               // return View("JoinEvent", joinedEvent);
 
             }
             var eventItem = await _eventList.GetEventItemById(id);

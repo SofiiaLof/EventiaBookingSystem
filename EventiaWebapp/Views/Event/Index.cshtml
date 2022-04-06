@@ -1,4 +1,5 @@
 ﻿
+
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 <section class="px-4 py-5 my-5 text-center">
@@ -11,9 +12,12 @@
             sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
   
  
-    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-        <a asp-controller="Event" asp-action="Events"  type="button" class="btn btn-primary btn-lg px-4 gap-3">Register</a>
-        <a asp-controller="Event" asp-action="Events" type="button" class="btn btn-secondary btn-lg px-4">Log In</a>
-    </div>
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+
+            <a type="button" id="register"  class="btn btn-primary btn-lg px-4 gap-3" asp-area="Identity" asp-page="/Account/Register" >Register</a>
+            <a type="button" id="login" class="btn btn-secondary btn-lg px-4" asp-area="Identity" asp-page="/Account/Login">Log In</a>
+           
+        </div>
     </div>
 </section>
+

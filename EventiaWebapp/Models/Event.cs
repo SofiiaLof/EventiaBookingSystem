@@ -17,10 +17,10 @@ namespace EventiaWebapp.Models
         public DateTime Date { get; set; }
         public int Spots_available { get; set; }
 
-        public IList<Attendee> Attendees { get; set; }
+        public IList<User> Attendees { get; set; }
 
-        [ForeignKey("Organizer_Id")]
-        public Organizer Organizer { get; set; }
+        public IList<User> Organizer { get; set; }
+
 
     }
 }

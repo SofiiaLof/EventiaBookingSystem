@@ -14,7 +14,7 @@ namespace EventiaWebapp.Services
         {
             _ctx = ctx;
         }
-
+        
         public async Task<List<Event>> GetEventList()
         {
             var query = _ctx.Events.Include(o => o.Organizer);
@@ -49,9 +49,9 @@ namespace EventiaWebapp.Services
 
         }
 
-        public async Task<Event> JoinedEvent(Attendee attendee, int eventId)
+        public async Task<Event> JoinedEvent(User attendee, int eventId)
         {
-            var queryAttendee = _ctx.Attendes.Where(a => a.Id == attendee.Id).Include(e => e.Events);
+            var queryAttendee = _ctx.Users.Where(a => a.Id == attendee.Id).Include(e => e.JoinedEvents);
             var attendeeFound = await queryAttendee.FirstOrDefaultAsync();
 
             var queryEvent = _ctx.Events.Where(e => e.Id == eventId)
@@ -65,7 +65,7 @@ namespace EventiaWebapp.Services
             {
                 return null;
             }
-            attendeeFound.Events.Add(eventFound);
+            attendeeFound.JoinedEvents.Add(eventFound);
 
 
             _ctx.Update(attendeeFound);
@@ -74,9 +74,10 @@ namespace EventiaWebapp.Services
             return eventFound;
         }
 
-        public async Task<Attendee> FindAttendee(int id)
+        /*
+        public async Task<User> FindAttendee(int id)
         {
-            var query = _ctx.Attendes.Where(a => a.Id == id);
+            var query = _ctx.Users.Where(a => a. == id);
             var attendeeFound = await query.FirstOrDefaultAsync();
 
             var exist = query.Any();
@@ -88,10 +89,10 @@ namespace EventiaWebapp.Services
 
             return attendeeFound;
         }
-
-        public async Task<List<Event>> GetAttendeeEventList(Attendee attendee)
+        */
+        public async Task<List<Event>> GetAttendeeEventList(User attendee)
         {
-            var queryAttendee = _ctx.Attendes.Where(a => a.Id == attendee.Id);
+            var queryAttendee = _ctx.Users.Where(a => a.Id == attendee.Id);
 
             var attendeeFound = await queryAttendee.FirstOrDefaultAsync();
 
@@ -112,4 +113,5 @@ namespace EventiaWebapp.Services
 
         }
     }
+        
 }

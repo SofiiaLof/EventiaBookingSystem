@@ -1,5 +1,6 @@
 ﻿using EventiaWebapp.Models;
 using EventiaWebapp.Services;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EventiaWebapp.Controllers
@@ -7,9 +8,11 @@ namespace EventiaWebapp.Controllers
     public class EventController : Controller
     {
         private readonly EventList _eventList;
-        public EventController(EventList eventList)
+        private readonly UserManager<User> _userManager;
+        public EventController(EventList eventList, UserManager<User> userManager)
         {
             _eventList = eventList;
+            _userManager = userManager;
         }
         public async Task<IActionResult> Index()
         {
@@ -21,11 +24,10 @@ namespace EventiaWebapp.Controllers
         }
         public async Task<IActionResult> MyEvents()
         {
+            var user = await _userManager.GetUserAsync(User);
+            var attendeeEventList = await _eventList.GetAttendeeEventList(user);
 
-            //var attendee = await _eventList.FindAttendee(1);
-           // var attendeeEventList = await _eventList.GetAttendeeEventList(attendee);
-
-            return View();
+            return View(attendeeEventList);
         }
 
 
@@ -34,10 +36,10 @@ namespace EventiaWebapp.Controllers
 
             if (HttpContext.Request.Method == "POST")
             {
-                //var attendee = await _eventList.FindAttendee(1);
-               // var joinedEvent = await _eventList.JoinedEvent(attendee, id);
+                var user = await _userManager.GetUserAsync(User);
+                var joinedEvent = await _eventList.JoinedEvent(user, id);
 
-               // return View("JoinEvent", joinedEvent);
+               return View("JoinEvent", joinedEvent);
 
             }
             var eventItem = await _eventList.GetEventItemById(id);

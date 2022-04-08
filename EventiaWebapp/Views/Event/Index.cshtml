@@ -1,23 +1,56 @@
 ﻿
+@using Microsoft.AspNetCore.Identity
+@using EventiaWebapp.Models
+
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
 
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
-<section class="px-4 py-5 my-5 text-center">
-    <h1 class="display-5 fw-bold">Welcome!</h1>
-    <div class="col-lg-6 mx-auto">
-        <p class="lead mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
-            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore 
-            eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-            sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+
+    @if (SignInManager.IsSignedIn(User))
+    {
+
+        <section class="px-4 py-5 my-5 text-center">
+            <h1 class="display-5 fw-bold">Welcome!</h1>
+            <div class="col-lg-6 mx-auto">
+                <p class="lead mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
+                    labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                    aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore 
+                    eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                    sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
   
  
-        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
 
-            <a type="button" id="register"  class="btn btn-primary btn-lg px-4 gap-3" asp-area="Identity" asp-page="/Account/Register" >Register</a>
-            <a type="button" id="login" class="btn btn-secondary btn-lg px-4" asp-area="Identity" asp-page="/Account/Login">Log In</a>
+                    <a type="button" class="btn btn-primary btn-lg px-4 gap-3" asp-controller="Event" asp-action="Events" >Find a new event</a>
+
+                </div>
+            </div>
+        </section>
+      
+    }
+    else
+    {
+        <section class="px-4 py-5 my-5 text-center">
+            <h1 class="display-5 fw-bold">Welcome!</h1>
+            <div class="col-lg-6 mx-auto">
+                <p class="lead mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
+                    labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                    aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore 
+                    eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                    sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  
+ 
+                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+
+                    <a type="button" id="register"  class="btn btn-primary btn-lg px-4 gap-3" asp-area="Identity" asp-page="/Account/Register" >Register</a>
+                    <a type="button" id="login" class="btn btn-secondary btn-lg px-4" asp-area="Identity" asp-page="/Account/Login">Log In</a>
            
-        </div>
-    </div>
-</section>
+                </div>
+            </div>
+        </section>
+      
+    }
 

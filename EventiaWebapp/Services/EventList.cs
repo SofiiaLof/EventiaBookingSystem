@@ -74,22 +74,7 @@ namespace EventiaWebapp.Services
             return eventFound;
         }
 
-        /*
-        public async Task<User> FindAttendee(int id)
-        {
-            var query = _ctx.Users.Where(a => a. == id);
-            var attendeeFound = await query.FirstOrDefaultAsync();
-
-            var exist = query.Any();
-
-            if (!exist)
-            {
-                return null;
-            }
-
-            return attendeeFound;
-        }
-        */
+       
         public async Task<List<Event>> GetAttendeeEventList(User attendee)
         {
             var queryAttendee = _ctx.Users.Where(a => a.Id == attendee.Id);
@@ -100,7 +85,7 @@ namespace EventiaWebapp.Services
 
             if (!exist)
             {
-                return null;
+                return null;     
             }
 
             var queryEventList = _ctx.Events.Where(a => a.Attendees.Contains(attendeeFound))

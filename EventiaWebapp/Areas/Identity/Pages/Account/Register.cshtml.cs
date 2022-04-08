@@ -19,6 +19,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using EventiaWebapp.Models;
 
 namespace EventiaWebapp.Areas.Identity.Pages.Account
 {
@@ -98,6 +99,22 @@ namespace EventiaWebapp.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
+            [Required]
+            [Display(Name = "First Name")]
+            public string First_name { get; set; }
+
+            [Required]
+            [Display(Name = "Last Name")]
+            public string Last_name { get; set; }
+
+        
+            [Display(Name = "Customer")]
+            public bool IsCustomer { get; set; }
+
+
+            [Display(Name = "Organizer")]
+            public bool IsOrganizer { get; set; }
         }
 
 
@@ -117,10 +134,18 @@ namespace EventiaWebapp.Areas.Identity.Pages.Account
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
+                user.First_name = Input.First_name;
+                user.Last_name = Input.Last_name;
+
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)
                 {
+
+                    if (Input.IsCustomer)
+                    {
+                        //TODO fixa checkboxar för organizator och customer
+                    }
                     _logger.LogInformation("User created a new account with password.");
 
                     var userId = await _userManager.GetUserIdAsync(user);

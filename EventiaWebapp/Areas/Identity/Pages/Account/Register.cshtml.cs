@@ -109,7 +109,7 @@ namespace EventiaWebapp.Areas.Identity.Pages.Account
             public string Last_name { get; set; }
 
         
-            [Display(Name = "Customer")]
+            [Display(Name = "Attendee")]
             public bool IsCustomer { get; set; }
 
 
@@ -144,7 +144,11 @@ namespace EventiaWebapp.Areas.Identity.Pages.Account
 
                     if (Input.IsCustomer)
                     {
-                        //TODO fixa checkboxar för organizator och customer
+                        await _userManager.AddToRoleAsync(user, "Attendee");
+                    }
+                    if (Input.IsOrganizer)
+                    {
+                        await _userManager.AddToRoleAsync(user, "Organizer");
                     }
                     _logger.LogInformation("User created a new account with password.");
 
@@ -166,7 +170,7 @@ namespace EventiaWebapp.Areas.Identity.Pages.Account
                     }
                     else
                     {
-                        await _signInManager.SignInAsync(user, isPersistent: false);
+                       await _signInManager.SignInAsync(user, isPersistent: false);
                         return LocalRedirect(returnUrl);
                     }
                 }

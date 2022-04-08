@@ -17,7 +17,7 @@ builder.Services.AddDbContext<EventiaDbContext>(options =>
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<User>()
+builder.Services.AddDefaultIdentity<User>().AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<EventiaDbContext>();
 
 

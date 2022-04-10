@@ -10,13 +10,13 @@ namespace EventiaWebapp.Controllers
         private readonly EventList _eventList;
         private readonly UserManager<User> _userManager;
         private readonly OrganizerList _organizerList;
-        private readonly AdminList _adminList;
-        public EventController(EventList eventList, UserManager<User> userManager, OrganizerList organizerList, AdminList adminList)
+       
+        public EventController(EventList eventList, UserManager<User> userManager, OrganizerList organizerList)
         {
             _eventList = eventList;
             _userManager = userManager;
             _organizerList = organizerList;
-            _adminList = adminList;
+           
         }
         public async Task<IActionResult> Index()
         {
@@ -78,11 +78,6 @@ namespace EventiaWebapp.Controllers
         }
 
 
-        public async Task<IActionResult> ManageUsers()
-        {
-
-            var userList = await _adminList.GetAllUsers();
-            return View(userList);
-        }
+    
     }
 }

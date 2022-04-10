@@ -43,6 +43,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(name: "default", pattern: "{controller=event}/{action=index}");
+app.MapControllerRoute(name: "default", pattern: "{controller=admin}/{action=ManageUsers}");
 
 
 app.MapRazorPages();

@@ -20,12 +20,9 @@ namespace EventiaWebapp.Data
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<User>()
-                .HasOne(e => e.HostedEvent)
-                .WithMany( e => e.Organizer)
+                .HasMany(e => e.HostedEvents)
+                .WithOne( e => e.Organizer)
                 .OnDelete(DeleteBehavior.NoAction);
-
-
-       
 
         }
     }

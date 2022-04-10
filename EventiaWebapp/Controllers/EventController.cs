@@ -9,10 +9,12 @@ namespace EventiaWebapp.Controllers
     {
         private readonly EventList _eventList;
         private readonly UserManager<User> _userManager;
-        public EventController(EventList eventList, UserManager<User> userManager)
+        private readonly OrganizerList _organizerList;
+        public EventController(EventList eventList, UserManager<User> userManager, OrganizerList organizerList)
         {
             _eventList = eventList;
             _userManager = userManager;
+            _organizerList = organizerList;
         }
         public async Task<IActionResult> Index()
         {
@@ -47,6 +49,31 @@ namespace EventiaWebapp.Controllers
 
         }
 
+        public async Task<IActionResult> AddEvent()
+        {
+            return View();
+
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddEvent( [Bind("Id,Title, Description, Date, Place, Adress, Spots_avaliable")] Event events)
+        {
+           
+                var user = await _userManager.GetUserAsync(User);
+               await _organizerList.AddEvent(user,events);
+
+               return View();
+            
+             
+        }
+
+        public async Task<IActionResult> OrganizeEvents()
+        {
+
+            var user = await _userManager.GetUserAsync(User);
+            var organizerList = await _organizerList.GetOrganizerEventList(user);
+            return View(organizerList);
+        }
 
     }
 }

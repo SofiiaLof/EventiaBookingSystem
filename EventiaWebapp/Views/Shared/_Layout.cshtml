@@ -64,8 +64,8 @@
                             <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserAsync(User).Result.First_name!</a>
                         </li>
                         <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                            <a type="button" class="btn btn-success" class="nav-link text-dark" >Organize events</a>
-                            <a type="button" class="btn btn-success" class="nav-link text-dark" >Add event</a>
+                            <a type="button" class="btn btn-success" class="nav-link text-dark" asp-controller ="Event" asp-action="OrganizeEvents" >Organize events</a>
+                            <a type="button" class="btn btn-success" class="nav-link text-dark" asp-controller ="Event" asp-action="AddEvent">Add event</a>
                         </div>
                         <li class="nav-item">
                             <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Event", new { area = "" })">

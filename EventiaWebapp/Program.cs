@@ -10,6 +10,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 builder.Services.AddScoped<Database>();
 builder.Services.AddScoped<EventList>();
+builder.Services.AddScoped<OrganizerList>();
 
 builder.Services.AddDbContext<EventiaDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("EventiaDb")));

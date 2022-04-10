@@ -11,6 +11,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddScoped<Database>();
 builder.Services.AddScoped<EventList>();
 builder.Services.AddScoped<OrganizerList>();
+builder.Services.AddScoped<AdminList>();
 
 builder.Services.AddDbContext<EventiaDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("EventiaDb")));
@@ -42,6 +43,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(name: "default", pattern: "{controller=event}/{action=index}");
+
 
 app.MapRazorPages();
 app.Run();

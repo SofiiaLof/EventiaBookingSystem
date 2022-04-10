@@ -25,7 +25,7 @@ namespace EventiaWebapp.Data
 
             var users = new List<User>
             {
-                new(){UserName = "adminadmin@mail.com", First_name = "Albert", Last_name = "Kosivskij", Email = "adminadmin@mail.com"},
+                new(){UserName = "adminadmin@mail.com", First_name = "Admin", Last_name = "Kosivskij", Email = "adminadmin@mail.com"},
                 new(){UserName = "attendee@mail.com", First_name = "Attendee", Last_name = "Attendee", Email = "attendee@mail.com"},
                 new(){UserName = "organizer@mail.com", First_name = "Organizer", Last_name = "Organizer", Email = "organizer@mail.com"},
 

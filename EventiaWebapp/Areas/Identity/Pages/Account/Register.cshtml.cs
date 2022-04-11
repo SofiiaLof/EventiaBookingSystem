@@ -23,6 +23,7 @@ using EventiaWebapp.Models;
 
 namespace EventiaWebapp.Areas.Identity.Pages.Account
 {
+    [AllowAnonymous]
     public class RegisterModel : PageModel
     {
         private readonly SignInManager<User> _signInManager;
@@ -115,6 +116,9 @@ namespace EventiaWebapp.Areas.Identity.Pages.Account
 
             [Display(Name = "Organizer")]
             public bool IsOrganizer { get; set; }
+
+            [Display(Name = "Organization name*")]
+            public string Organization_name { get; set; }
         }
 
 
@@ -148,6 +152,7 @@ namespace EventiaWebapp.Areas.Identity.Pages.Account
                     }
                     if (Input.IsOrganizer)
                     {
+                        user.Organization_name = Input.Organization_name;
                         await _userManager.AddToRoleAsync(user, "Organizer");
                     }
                     _logger.LogInformation("User created a new account with password.");

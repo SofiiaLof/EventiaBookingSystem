@@ -2,7 +2,7 @@
 @using EventiaWebapp.Services
 @model List<User>
 
-
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 
 <h2>Your events</h2>
@@ -12,22 +12,79 @@
         <th scope="col">Username</th>
         <th scope="col">Email</th>
         <th scope="col">IsOrganizer</th>
-     
+
     </tr>
-    </thead> 
+    </thead>
     <tbody>
+   
+    @{
+        var id = "";
 
-    @foreach (var userItem in @Model)
-    {
+        @foreach (var userItem in @Model)
+        {
+           
+            <tr>
+                <td>@userItem.UserName</td>
+                <td>@userItem.Email</td>
+                @if (userItem.IsOrganizer)
+                {
+                    <td><input type="checkbox" checked="true"/></td>
+                }
+                else
+                {
+                    <td>
+                        <form  class ="form" method="post" asp-controller="Admin" asp-action="ManageUsers" asp-route-id="@userItem.UserName">
+                            <input id="@userItem.Id" class="checkBox" asp-for="@userItem.IsOrganizer" type="checkbox" onchange="checkboxChecked()"/>
+                       
+                        </form>
 
-        <tr>
-            <td>@userItem.UserName</td>
-            <td>@userItem.Email</td>
-            <td><input type ="checkbox"/></td>
-     
-        </tr>
-    
-    
+                    </td>
+                   
+                    
+                }
+
+            </tr>
+          
+        }
+
+
+
+
+
     }
     </tbody>
 </table>
+
+@section renderSection{
+
+    <script>
+        function checkboxChecked() {
+
+            document.addEventListener("change",
+
+                function(event) {
+                    
+
+                    let target = event.target;
+                    console.log(target);
+
+                    if (target.className === "checkBox") {
+                        console.log(target);
+
+                        if (target.checked) {
+
+                            let closest = target.closest(".form");
+                            console.log(closest);
+                            closest.submit();
+
+                        }
+                    }
+
+
+                });
+
+        }
+    </script>
+   
+
+}

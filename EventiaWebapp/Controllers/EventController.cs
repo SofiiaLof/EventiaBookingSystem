@@ -1,5 +1,6 @@
 ﻿using EventiaWebapp.Models;
 using EventiaWebapp.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,10 +19,14 @@ namespace EventiaWebapp.Controllers
             _organizerList = organizerList;
            
         }
+
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             return View();
         }
+
+        [AllowAnonymous]
         public async Task<IActionResult> Events()
         {
             return View();

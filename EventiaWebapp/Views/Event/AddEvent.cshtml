@@ -3,7 +3,7 @@
 
 
 
-
+<section class="container add-container">
     <form method="post">
         <div class="mb-3">
             <label asp-for="Title" for="title" class="form-label">Title:</label>
@@ -17,10 +17,28 @@
             <label asp-for="Date" for="date" class="form-label">Date:</label>
             <input asp-for="Date" type="date" class="form-control" id="date" placeholder="Date">
         </div>
+        <div class="mb-3">
+            <label asp-for="Place" for="place" class="form-label">Place:</label>
+            <input asp-for="Place" type="place" class="form-control" id="place" placeholder="Place">
+        </div>
+        
+        <div class="mb-3">
+            <label asp-for="Adress" for="adress" class="form-label">Adress:</label>
+            <input asp-for="Adress" type="adress" class="form-control" id="adress" placeholder="Adress">
+        </div>
+        
+        
+        <div class="mb-3">
+            <label asp-for="Spots_available" for="spots_avaliable" class="form-label">Spots avaliable:</label>
+            <input asp-for="Spots_available" type="spots_avaliable" class="form-control" id="spots_avaliable" placeholder="Spots avaliable">
+        </div>
 
         <div class="col-auto">
-            <button asp-controller="Event" asp-action="AddEvent"  type="submit" class="btn btn-primary mb-3">Submit</button>
+            <button asp-controller="Event" asp-action="AddEvent"  type="submit" class="btn btn mb-3 add-btn">Submit</button>
         </div>
     </form>
 
+
+
+</section>
 

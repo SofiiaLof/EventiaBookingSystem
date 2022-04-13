@@ -11,7 +11,7 @@
                 <p class="card-text">Description: @Model.Description</p>
                 <p>Place: @Model.Place</p>
                 <p>Adress: @Model.Adress</p>
-             
+                <p>Organizer: @Model.Organizer.Organization_name</p>
                 <p>Date: @Model.Date.ToString("MM/dd/yyyy")</p>
                 <p>Spots avaliable: @Model.Spots_available</p>
             
@@ -38,7 +38,7 @@
                 <p class="card-text">Description: @Model.Description</p>
                 <p>Place: @Model.Place</p>
                 <p>Adress: @Model.Adress</p>
-             
+                <p>Organizer: @Model.Organizer.Organization_name</p>
                 <p>Date: @Model.Date.ToString("MM/dd/yyyy")</p>
                 <p>Spots avaliable: @Model.Spots_available</p>
             
@@ -51,8 +51,8 @@
         <div class="confirmation-info pt-5">
             <h2>Successfully joined @Model.Title event. See you there! </h2>
             <div>
-                <a type="submit" class="btn btn-info" asp-controller="Event" asp-action="Events">View more events</a>    
-                <a type="submit" class="btn btn-info" asp-controller="Event" asp-action="MyEvents">View your events</a> 
+                <a type="submit" class="btn btn join-btn" asp-controller="Event" asp-action="Events">View more events</a>    
+                <a type="submit" class="btn btn join-btn" asp-controller="Event" asp-action="MyEvents">View your events</a> 
             </div>
         </div>
     </div>

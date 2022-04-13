@@ -24,7 +24,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <ul id="nav-wrapper"class="navbar-nav me-auto mb-2 mb-lg-0">
                         
                             <li class="nav-item">
                                 <a class="nav-link" asp-controller="Event" asp-action="Index">Home</a>
@@ -44,18 +44,20 @@
                                     <a class="nav-link" asp-controller="Event" asp-action="MyEvents">My Events</a>
                                 </li>
 
-                              
-                                    <li class="nav-item">
-                                        <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage"> @UserManager.GetUserAsync(User).Result.First_name!</a>
-                                    </li>
-
-
-                              
+                                <div class="user-wrapper">
                                     <li class="nav-item">
                                         <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Event", new {area = ""})">
-                                            <button id="logout" type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+                                            <button id="logout" type="submit" class="btn btn-link">Logout</button>
                                         </form>
                                     </li>
+
+                                
+                                    <li class="nav-item">
+                                        <a id="manage" class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage"> @UserManager.GetUserAsync(User).Result.First_name</a>
+                                    </li>
+                                </div>
+                              
+
                              
 
                             }
@@ -68,49 +70,60 @@
                                 </li>
 
 
-                                <li class="nav-item">
-                                    <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage"> @UserManager.GetUserAsync(User).Result.Organization_name!</a>
-                                </li>
+                                    <a type="button" class="nav-link" asp-controller="Event" asp-action="OrganizeEvents">Organize events</a>
+                                    <a type="button"  class="nav-link" asp-controller="Event" asp-action="AddEvent">Add event</a>
+                              
 
-                                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                                    <a type="button" class="btn btn-success" class="nav-link text-dark" asp-controller="Event" asp-action="OrganizeEvents">Organize events</a>
-                                    <a type="button" class="btn btn-success" class="nav-link text-dark" asp-controller="Event" asp-action="AddEvent">Add event</a>
+                                <div class="user-wrapper">
+                                    <li class="nav-item">
+                                        <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Event", new {area = ""})">
+                                            <button id="logout" type="submit" class="btn btn-link">Logout</button>
+                                        </form>
+                                    </li>
+
+                                   
+                                        <li class="nav-item">
+                                            <a id="manage" class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage"> @UserManager.GetUserAsync(User).Result.Organization_name</a>
+                                        </li>
+                                   
+
                                 </div>
-                                <li class="nav-item">
-                                    <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Event", new {area = ""})">
-                                        <button id="logout" type="submit" class="nav-link btn btn-link text-dark">Logout</button>
-                                    </form>
-                                </li>
-
+                                
 
                             }
 
                             @if (User.IsInRole("Admin"))
                             {
-                                //TODO Fixa klart meny för Organizer
+                                 
                                 <li class="nav-item">
                                     <a class="nav-link" asp-controller="Event" asp-action="MyEvents">My Events</a>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage"> @UserManager.GetUserAsync(User).Result.First_name!</a>
+                                    <a class="nav-link" asp-controller="Admin" asp-action="ManageUsers">Manage user</a>
+
                                 </li>
-                                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                                    <a type="button" class="btn btn-danger" class="nav-link text-dark" asp-controller="Admin" asp-action="ManageUsers">Manage user</a>
+                                <div class="user-wrapper">
+                                    <li class="nav-item">
+                                        <a id="manage" class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage"> Admin</a>
+                                    </li>
+                                    
+                                    <li class="nav-item">
+                                        <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Event", new {area = ""})">
+                                            <button id="logout" type="submit" class="btn btn-link">Logout</button>
+                                        </form>
+                                    </li>
 
                                 </div>
-                                <li class="nav-item">
-                                    <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Event", new {area = ""})">
-                                        <button id="logout" type="submit" class="nav-link btn btn-link text-dark">Logout</button>
-                                    </form>
-                                </li>
+                              
+                               
 
                             }
                         }
                         else
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
+                                <a class="nav-link" id="login-main" asp-area="Identity" asp-page="/Account/Login">Login</a>
                             </li>
                         }
 
@@ -125,12 +138,13 @@
         @RenderBody()
     </main>
     <footer class="main-footer">
-        <div class="container">
-            &copy; 2022 Eventia  - <a asp-controller="" asp-action=""></a>
+        <div class="container-footer">
+            &copy; 2022 Eventia  <a asp-controller="" asp-action=""></a>
         </div>
     </footer>
     <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
     @await RenderSectionAsync("Scripts", false)
     @await RenderSectionAsync("renderSection", false)
+    @await RenderSectionAsync("ScriptSection", false)
 </body>
 </html>

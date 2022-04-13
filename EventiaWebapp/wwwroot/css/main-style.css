@@ -1,4 +1,7 @@
-﻿
+﻿body {
+    background-color: #E8F1F5;
+}
+
 .content {
      display: flex;
      min-height: 100vh;
@@ -7,20 +10,36 @@
 
 .main-content {
     flex: 1;
+    
 }
 
 .main-footer {
     height: 100px;
-    background-color: #EFD9D1;
+    background-color: #004A7C;
+    color: #FAFAFA;
+
 }
 
+.container-footer {
+    display: flex;
+    justify-content: center;
+}
+
+.navbar-light .navbar-nav .nav-link{
+    color: #FAFAFA;
+}
+
+.navbar-light .navbar-brand {
+    color: #FAFAFA;
+}
 .accordion-button:not(.collapsed) {
-     background-color: white;
-     box-shadow: none;
- }
+    background-color: white;
+    box-shadow: none;
+}
 
 .header-main {
-    background-color: #EFD9D1;
+    background-color: #004A7C;
+    color: #E8F1F5;
 }
 
 .navbar-brand {
@@ -28,7 +47,7 @@
     font-size: 3rem;
 }
 .nav-item {
-    font-weight: bold;
+  
     color: #1B1A17;
 }
 body {
@@ -66,4 +85,41 @@ body {
     align-items: center;
     height: 55vh;
     flex-direction: column;
+}
+
+#login-main, #logout {
+    color: #FAFAFA;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+#manage {
+    font-size: 1.3rem;
+    color: #D8D2CB;
+}
+
+#nav-wrapper {
+    width: 100%;
+}
+
+.user-wrapper {
+    width: 55%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+#register, #login {
+    background-color: #398AB9;
+    color: #FAFAFA;
+}
+
+.join-btn, .find-event-btn, .add-btn, #login-submit, #registerSubmit{
+    background-color: #398AB9;
+    color: #FAFAFA;
+}
+
+.add-container {
+    max-width: 500px;
 }

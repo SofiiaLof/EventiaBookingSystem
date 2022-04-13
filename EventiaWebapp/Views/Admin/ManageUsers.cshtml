@@ -11,14 +11,14 @@
     <tr>
         <th scope="col">Username</th>
         <th scope="col">Email</th>
-        <th scope="col">IsOrganizer</th>
+        <th scope="col">Is Organizer</th>
 
     </tr>
     </thead>
     <tbody>
    
     @{
-        var id = "";
+
 
         @foreach (var userItem in @Model)
         {
@@ -34,7 +34,7 @@
                 {
                     <td>
                         <form  class ="form" method="post" asp-controller="Admin" asp-action="ManageUsers" asp-route-id="@userItem.UserName">
-                            <input id="@userItem.Id" class="checkBox" asp-for="@userItem.IsOrganizer" type="checkbox" onchange="checkboxChecked()"/>
+                            <input id="@userItem.Id" class="checkBox" asp-for="@userItem.IsOrganizer" type="checkbox" onchange="checkboxChecked(event)"/>
                        
                         </form>
 
@@ -58,14 +58,9 @@
 @section renderSection{
 
     <script>
-        function checkboxChecked() {
-
-            document.addEventListener("change",
-
-                function(event) {
-                    
-
-                    let target = event.target;
+        function checkboxChecked(event) {
+           
+                    var target = event.target;
                     console.log(target);
 
                     if (target.className === "checkBox") {
@@ -73,15 +68,13 @@
 
                         if (target.checked) {
 
-                            let closest = target.closest(".form");
+                          var closest = target.closest(".form");
                             console.log(closest);
                             closest.submit();
 
                         }
                     }
 
-
-                });
 
         }
     </script>

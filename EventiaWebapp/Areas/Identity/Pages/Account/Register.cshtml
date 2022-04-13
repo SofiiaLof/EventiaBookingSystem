@@ -35,23 +35,9 @@
                 <input asp-for="Input.Last_name" class="form-control" autocomplete="last-name" aria-required="true" />
                 <label asp-for="Input.Last_name"></label>
             </div>
-            <div class="d-flex justify-content-between mb-3">
-                <div class="form-check">
-                    <input type="checkbox" asp-for="Input.IsCustomer" class="form-check-input"  />
-                    <label class="form-check-label" asp-for="Input.IsCustomer"></label>
-                </div>
-                <div class="form-check">
-                    <input type="checkbox" asp-for="Input.IsOrganizer" class="form-check-input" onchange="Checked()" />
-                    <label class="form-check-label" asp-for="Input.IsOrganizer"></label>
             
-                </div>
-            </div>
            
-            <div class="form-floating mb-3">
-                <input asp-for="Input.Organization_name" class="form-control" aria-required="true" />
-                <label asp-for="Input.Organization_name"></label>
-            </div>
-          
+           
             <button id="registerSubmit" type="submit" class="w-100 btn btn-lg">Register</button>
         </form>
     </div>

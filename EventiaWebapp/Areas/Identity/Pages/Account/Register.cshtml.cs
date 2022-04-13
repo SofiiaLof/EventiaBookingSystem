@@ -110,15 +110,7 @@ namespace EventiaWebapp.Areas.Identity.Pages.Account
             public string Last_name { get; set; }
 
         
-            [Display(Name = "Attendee")]
-            public bool IsCustomer { get; set; }
-
-
-            [Display(Name = "Organizer")]
-            public bool IsOrganizer { get; set; }
-
-            [Display(Name = "Organization name")]
-            public string Organization_name { get; set; }
+            
         }
 
 
@@ -146,15 +138,8 @@ namespace EventiaWebapp.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
 
-                    if (Input.IsCustomer)
-                    {
                         await _userManager.AddToRoleAsync(user, "Attendee");
-                    }
-                    if (Input.IsOrganizer)
-                    {
-                        user.Organization_name = Input.Organization_name;
-                        await _userManager.AddToRoleAsync(user, "Organizer");
-                    }
+                  
                     _logger.LogInformation("User created a new account with password.");
 
                     var userId = await _userManager.GetUserIdAsync(user);

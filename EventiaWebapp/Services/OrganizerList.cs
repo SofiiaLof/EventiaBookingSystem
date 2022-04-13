@@ -45,7 +45,10 @@ namespace EventiaWebapp.Services
                 Title = events.Title,
                 Description = events.Description,
                 Date = events.Date,
-                Organizer = userOrganizer
+                Place = events.Place,
+                Adress = events.Adress,
+                Spots_available = events.Spots_available,
+                    Organizer = userOrganizer
             };
             _ctx.Events.Add(newEvent);
             

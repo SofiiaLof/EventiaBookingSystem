@@ -30,7 +30,7 @@ namespace EventiaWebapp.Data
                 new(){UserName = "attendee2@mail.com", First_name = "Attendee2", Last_name = "Attendee", Email = "attendee2@mail.com", IsOrganizer = false},
                 new(){UserName = "attendee3@mail.com", First_name = "Attendee3", Last_name = "Attendee", Email = "attendee3@mail.com",IsOrganizer = false},
                 new(){UserName = "attendee4@mail.com", First_name = "Attendee4", Last_name = "Attendee", Email = "attendee4@mail.com",IsOrganizer = false},
-                new(){UserName = "organizer@mail.com", First_name = "Organizer", Last_name = "Organizer", Email = "organizer@mail.com",IsOrganizer = true},
+                new(){UserName = "organizer@mail.com", First_name = "Organizer", Last_name = "Organizer", Email = "organizer@mail.com",IsOrganizer = true, Organization_name = "Happy feet"},
 
             };
 

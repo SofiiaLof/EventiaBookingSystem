@@ -117,7 +117,7 @@ namespace EventiaWebapp.Areas.Identity.Pages.Account
             [Display(Name = "Organizer")]
             public bool IsOrganizer { get; set; }
 
-            [Display(Name = "Organization name*")]
+            [Display(Name = "Organization name")]
             public string Organization_name { get; set; }
         }
 

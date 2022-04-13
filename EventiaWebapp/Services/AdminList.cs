@@ -1,4 +1,5 @@
-﻿using EventiaWebapp.Data;
+﻿using System.Threading.Tasks.Dataflow;
+using EventiaWebapp.Data;
 using EventiaWebapp.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -21,10 +22,13 @@ namespace EventiaWebapp.Services
 
         public async Task<List<User>> GetAllUsers()
         {
-            var query = _ctx.Users;
-            var allUsers = await query.ToListAsync();
+            var query = _ctx.Users
+                .Join(_ctx.UserRoles, u=>u.Id, r=>r.UserId, (u,r)=> new{user=u, userRole=r})
+                .Join(_ctx.Roles, a=>a.userRole.RoleId, r=>r.Id, (a,r)=> new{user=a.user, role = r})
+                .Where(r=>r.role.Name !="Admin").Select(ur=>ur.user).Distinct();
 
-         
+
+            var allUsers = await query.ToListAsync();
 
             return allUsers;
         }
@@ -42,7 +46,7 @@ namespace EventiaWebapp.Services
             }
 
             _ctx.Update(foundUser);
-          await  _ctx.SaveChangesAsync();
+            await  _ctx.SaveChangesAsync();
             return foundUser;
         }
     }

@@ -56,12 +56,14 @@ namespace EventiaWebapp.Controllers
 
         }
 
+        [Authorize(Roles = "Organizer")]
         public async Task<IActionResult> AddEvent()
         {
             return View();
 
         }
 
+        [Authorize(Roles = "Organizer")]
         [HttpPost]
         public async Task<IActionResult> AddEvent( [Bind("Id,Title, Description, Date, Place, Adress, Spots_avaliable")] Event events)
         {
@@ -69,11 +71,12 @@ namespace EventiaWebapp.Controllers
                 var user = await _userManager.GetUserAsync(User);
                await _organizerList.AddEvent(user,events);
 
-               return View();
+               return RedirectToAction("OrganizeEvents");
             
              
         }
 
+        [Authorize(Roles = "Organizer")]
         public async Task<IActionResult> OrganizeEvents()
         {
 

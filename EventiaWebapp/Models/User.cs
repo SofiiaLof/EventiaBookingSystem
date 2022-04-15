@@ -13,6 +13,7 @@ namespace EventiaWebapp.Models
         public string? Organization_name { get; set; }
 
         public bool IsOrganizer { get; set; }
+        public bool BecomeAnOrganizer { get; set; }
 
         [InverseProperty("Organizer")]
         public List<Event> HostedEvents { get; set; }

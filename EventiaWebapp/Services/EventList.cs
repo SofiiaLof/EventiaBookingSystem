@@ -97,6 +97,17 @@ namespace EventiaWebapp.Services
 
 
         }
+
+        public async Task MakeChangeRequest(User user)
+        {
+            var queryAttendee = _ctx.Users.Where(a => a.Id == user.Id);
+            var attendeeFound = await queryAttendee.FirstOrDefaultAsync();
+
+            attendeeFound.BecomeAnOrganizer = true;
+            _ctx.Update(attendeeFound);
+            await _ctx.SaveChangesAsync();
+        }
+       
     }
         
 }

@@ -12,20 +12,21 @@
         <th scope="col">Username</th>
         <th scope="col">Email</th>
         <th scope="col">Is Organizer</th>
+        <th scope="col">Change requested</th>
 
     </tr>
     </thead>
     <tbody>
    
-    @{
+    
 
-
-        @foreach (var userItem in @Model)
-        {
+        @{
+            @foreach (var userItem in @Model)
+            {
            
-            <tr>
-                <td>@userItem.UserName</td>
-                <td>@userItem.Email</td>
+                <tr>
+                    <td>@userItem.UserName</td>
+                    <td>@userItem.Email</td>
                
 
                     <td>
@@ -33,15 +34,21 @@
                             <input id="@userItem.Id" class="checkBox" asp-for="@userItem.IsOrganizer" type="checkbox" onclick="checkboxChecked(event)"/>
                         </form>
                     </td>
+                
+                 
+                    @if(userItem.BecomeAnOrganizer){
+                        <td id="request">Requested</td>
+                    }
 
               
-            </tr>
+                </tr>
           
+            }
+
+
         }
-
-
-
-    }
+       
+    
     </tbody>
 </table>
 
@@ -56,11 +63,10 @@
                     if (target.className === "checkBox") {
                         console.log(target);
 
-                        
                         var closest = target.closest(".form");
-                        console.log(closest);
                         closest.submit();
-
+                      
+                        
                     }
 
 

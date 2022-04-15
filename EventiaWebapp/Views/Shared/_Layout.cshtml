@@ -55,6 +55,10 @@
                                     <li class="nav-item">
                                         <a id="manage" class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage"> @UserManager.GetUserAsync(User).Result.First_name</a>
                                     </li>
+
+                                    <li>
+                                        <a type="button"  class="nav-link" asp-controller="Event" asp-action="RequestToMakeUserAnOrganizer">Make me an organizer</a>
+                                    </li>
                                 </div>
 
 
@@ -111,7 +115,7 @@
                                             <button id="logout" type="submit" class="btn btn-link">Logout</button>
                                         </form>
                                     </li>
-
+                                   
                                 </div>
                               
                                

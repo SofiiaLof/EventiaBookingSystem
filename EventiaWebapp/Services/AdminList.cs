@@ -43,6 +43,8 @@ namespace EventiaWebapp.Services
                 await _userManager.AddToRoleAsync(foundUser, "Organizer");
                 await _userManager.RemoveFromRoleAsync(foundUser, "Attendee");
                 foundUser.IsOrganizer = true;
+                foundUser.BecomeAnOrganizer = false;
+
 
             }
             else
@@ -57,5 +59,7 @@ namespace EventiaWebapp.Services
             return foundUser;
         }
 
+
+       
     }
 }

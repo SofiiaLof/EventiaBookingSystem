@@ -36,7 +36,5 @@ namespace EventiaWebapp.Controllers
             
         }
 
-
-
     }
 }

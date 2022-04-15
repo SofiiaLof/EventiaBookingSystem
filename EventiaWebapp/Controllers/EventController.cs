@@ -85,7 +85,12 @@ namespace EventiaWebapp.Controllers
             return View(organizerList);
         }
 
-
+        public async Task<IActionResult> RequestToMakeUserAnOrganizer()
+        {
+            var user = await _userManager.GetUserAsync(User);
+            await _eventList.MakeChangeRequest(user);
+            return View(user);
+        }
     
     }
 }

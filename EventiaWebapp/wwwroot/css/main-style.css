@@ -123,3 +123,13 @@ body {
 .add-container {
     max-width: 500px;
 }
+
+.send-request {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  
+}
+.back-btn {
+    padding-top: 2rem;
+}

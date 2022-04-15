@@ -26,28 +26,18 @@
             <tr>
                 <td>@userItem.UserName</td>
                 <td>@userItem.Email</td>
-                @if (userItem.IsOrganizer)
-                {
-                    <td><input type="checkbox" checked="true"/></td>
-                }
-                else
-                {
+               
+
                     <td>
-                        <form  class ="form" method="post" asp-controller="Admin" asp-action="ManageUsers" asp-route-id="@userItem.UserName">
-                            <input id="@userItem.Id" class="checkBox" asp-for="@userItem.IsOrganizer" type="checkbox" onchange="checkboxChecked(event)"/>
-                       
+                        <form  class ="form" method="post" asp-controller="Admin" asp-action="ManageUsers" asp-route-id="@userItem.Id">
+                            <input id="@userItem.Id" class="checkBox" asp-for="@userItem.IsOrganizer" type="checkbox" onclick="checkboxChecked(event)"/>
                         </form>
-
                     </td>
-                   
-                    
-                }
 
+              
             </tr>
           
         }
-
-
 
 
 
@@ -66,13 +56,11 @@
                     if (target.className === "checkBox") {
                         console.log(target);
 
-                        if (target.checked) {
+                        
+                        var closest = target.closest(".form");
+                        console.log(closest);
+                        closest.submit();
 
-                          var closest = target.closest(".form");
-                            console.log(closest);
-                            closest.submit();
-
-                        }
                     }
 
 

@@ -33,9 +33,9 @@ namespace EventiaWebapp.Services
             return allUsers;
         }
 
-        public async Task<User> MakeAttendeAnOrganizer(string username)
+        public async Task<User> MakeAttendeAnOrganizer(string id)
         {
-            var query = _ctx.Users.Where(u => u.UserName == username);
+            var query = _ctx.Users.Where(u => u.Id == id);
 
             var foundUser = await query.FirstOrDefaultAsync();
             if (!foundUser.IsOrganizer)
@@ -44,10 +44,16 @@ namespace EventiaWebapp.Services
                 foundUser.IsOrganizer = true;
 
             }
+            else
+            {
+                await _userManager.RemoveFromRoleAsync(foundUser, "Organizer");
+                foundUser.IsOrganizer = false;
+            }
 
             _ctx.Update(foundUser);
             await  _ctx.SaveChangesAsync();
             return foundUser;
         }
+
     }
 }

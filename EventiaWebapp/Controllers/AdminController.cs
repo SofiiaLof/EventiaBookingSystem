@@ -30,8 +30,10 @@ namespace EventiaWebapp.Controllers
         {
            await _adminList.MakeAttendeAnOrganizer(id);
 
-            var userList = await _adminList.GetAllUsers();
-            return View(userList);
+            
+         
+            return RedirectToAction("ManageUsers");
+            
         }
 
 

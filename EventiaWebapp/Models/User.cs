@@ -10,8 +10,6 @@ namespace EventiaWebapp.Models
         public string? First_name { get; set; }
         public string? Last_name { get; set; }
 
-        public string? Organization_name { get; set; }
-
         public bool IsOrganizer { get; set; }
         public bool BecomeAnOrganizer { get; set; }
 

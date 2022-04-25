@@ -3,20 +3,21 @@ using EventiaWebapp.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using EventHandler = EventiaWebapp.Services.EventHandler;
 
 namespace EventiaWebapp.Controllers
 {
     public class EventController : Controller
     {
-        private readonly EventList _eventList;
+        private readonly EventHandler _eventHandler;
         private readonly UserManager<User> _userManager;
-        private readonly OrganizerList _organizerList;
+        private readonly OrganizerHandler _organizerHandler;
        
-        public EventController(EventList eventList, UserManager<User> userManager, OrganizerList organizerList)
+        public EventController(EventHandler eventHandler, UserManager<User> userManager, OrganizerHandler organizerHandler)
         {
-            _eventList = eventList;
+            _eventHandler = eventHandler;
             _userManager = userManager;
-            _organizerList = organizerList;
+            _organizerHandler = organizerHandler;
            
         }
 
@@ -34,7 +35,7 @@ namespace EventiaWebapp.Controllers
         public async Task<IActionResult> MyEvents()
         {
             var user = await _userManager.GetUserAsync(User);
-            var attendeeEventList = await _eventList.GetAttendeeEventList(user);
+            var attendeeEventList = await _eventHandler.GetAttendeeEventList(user);
 
             return View(attendeeEventList);
         }
@@ -46,12 +47,12 @@ namespace EventiaWebapp.Controllers
             if (HttpContext.Request.Method == "POST")
             {
                 var user = await _userManager.GetUserAsync(User);
-                var joinedEvent = await _eventList.JoinedEvent(user, id);
+                var joinedEvent = await _eventHandler.JoinedEvent(user, id);
 
                return View("JoinEvent", joinedEvent);
 
             }
-            var eventItem = await _eventList.GetEventItemById(id);
+            var eventItem = await _eventHandler.GetEventItemById(id);
             return View("JoinEvent", eventItem);
 
         }
@@ -69,7 +70,7 @@ namespace EventiaWebapp.Controllers
         {
            
                 var user = await _userManager.GetUserAsync(User);
-               await _organizerList.AddEvent(user,events);
+               await _organizerHandler.AddEvent(user,events);
 
                return RedirectToAction("OrganizeEvents");
             
@@ -81,14 +82,14 @@ namespace EventiaWebapp.Controllers
         {
 
             var user = await _userManager.GetUserAsync(User);
-            var organizerList = await _organizerList.GetOrganizerEventList(user);
+            var organizerList = await _organizerHandler.GetOrganizerEventList(user);
             return View(organizerList);
         }
 
         public async Task<IActionResult> RequestToMakeUserAnOrganizer()
         {
             var user = await _userManager.GetUserAsync(User);
-            await _eventList.MakeChangeRequest(user);
+            await _eventHandler.MakeChangeRequest(user);
             return View(user);
         }
     

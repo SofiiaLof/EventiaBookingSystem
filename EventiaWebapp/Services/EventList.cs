@@ -5,12 +5,12 @@ using Microsoft.EntityFrameworkCore.Query;
 
 namespace EventiaWebapp.Services
 {
-    public class EventList
+    public class EventHandler
     {
 
         public readonly EventiaDbContext _ctx;
 
-        public EventList(EventiaDbContext ctx)
+        public EventHandler(EventiaDbContext ctx)
         {
             _ctx = ctx;
         }

@@ -5,15 +5,16 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using EventHandler = EventiaWebapp.Services.EventHandler;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 builder.Services.AddScoped<Database>();
-builder.Services.AddScoped<EventList>();
-builder.Services.AddScoped<OrganizerList>();
-builder.Services.AddScoped<AdminList>();
+builder.Services.AddScoped<EventHandler>();
+builder.Services.AddScoped<OrganizerHandler>();
+builder.Services.AddScoped<AdminHandler>();
 
 builder.Services.AddDbContext<EventiaDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("EventiaDb")));

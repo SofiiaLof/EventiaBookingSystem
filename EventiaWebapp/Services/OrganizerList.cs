@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EventiaWebapp.Services
 {
-    public class OrganizerList
+    public class OrganizerHandler
     {
         public readonly EventiaDbContext _ctx;
 
-        public OrganizerList(EventiaDbContext ctx)
+        public OrganizerHandler(EventiaDbContext ctx)
         {
             _ctx = ctx;
         }

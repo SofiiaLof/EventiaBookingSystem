@@ -6,14 +6,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EventiaWebapp.Services
 {
-    public class AdminList
+    public class AdminHandler
     {
 
         private readonly EventiaDbContext _ctx;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly UserManager<User> _userManager;
 
-        public AdminList(EventiaDbContext ctx, RoleManager<IdentityRole> roleManager, UserManager<User> userManager)
+        public AdminHandler(EventiaDbContext ctx, RoleManager<IdentityRole> roleManager, UserManager<User> userManager)
         {
             _ctx = ctx;
             _roleManager = roleManager;

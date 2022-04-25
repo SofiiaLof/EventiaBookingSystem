@@ -9,17 +9,17 @@ namespace EventiaWebapp.Controllers
     [Authorize(Roles="Admin")]
     public class AdminController : Controller
     {
-        private readonly AdminList _adminList;
+        private readonly AdminHandler _adminHandler;
 
-        public AdminController(AdminList adminList)
+        public AdminController(AdminHandler adminHandler)
         {
-            _adminList = adminList;
+            _adminHandler = adminHandler;
         }
 
 
         public async Task<IActionResult> ManageUsers()
         {
-            var userList = await _adminList.GetAllUsers();
+            var userList = await _adminHandler.GetAllUsers();
             return View(userList);
         }
 
@@ -28,7 +28,7 @@ namespace EventiaWebapp.Controllers
        [HttpPost]
         public async Task<IActionResult> ManageUsers(string id)
         {
-           await _adminList.MakeAttendeAnOrganizer(id);
+           await _adminHandler.MakeAttendeAnOrganizer(id);
 
             
          
